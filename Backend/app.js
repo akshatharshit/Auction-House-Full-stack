@@ -18,6 +18,8 @@ config({
     path: "./config/config.env"   
 });
 
+app.use(cookieParser());
+
 // connect frontend and backend
 app.use(cors({
     origin: [process.env.FRONTEND_URL],
