@@ -29,88 +29,77 @@ const About = () => {
   ];
 
   return (
-    <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20  gap-7 flex flex-col min-h-screen py-4 justify-center bg-[#9694FF]">
-        <div className="bg-[#EBEAFF] rounded-md p-5">
-          <h1
-            className={`text-[#3D3BF3] text-2xl font-bold mb-2 min-[480px]:text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl`}
-          >
-            Know us more
+    <section className="w-full px-6 py-20 bg-gradient-to-br from-[#a4a2ff] to-[#ebeaff] min-h-screen">
+      <div className="max-w-6xl mx-auto space-y-14">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#3D3BF3] mb-3">
+            Know Us More
           </h1>
-          <p className="text-xl text-stone-600">
-            Welcome to PrimeBid, the ultimate destination for online auctions
-            and bidding excitement. Founded in 2024, we are dedicated to
-            providing a dynamic and user-friendly platform for buyers and
-            sellers to connect, explore, and transact in a secure and seamless
-            environment.
+          <p className="text-lg md:text-xl text-stone-700 max-w-3xl mx-auto">
+            Welcome to <span className="font-semibold text-black">AuctionHouse</span> — the ultimate destination for online auctions and
+            bidding excitement. Founded in 2025, we connect buyers and sellers in a secure, easy, and exciting digital marketplace.
           </p>
         </div>
-        <div className="bg-[#EBEAFF] rounded-md p-5">
-          <h3
-            className={`text-[#3D3BF3] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}
-          >
-            Our Mission
-          </h3>
-          <p className="text-xl text-stone-600">
-            At PrimeBid, our mission is to revolutionize the way people buy and
-            sell items online. We strive to create an engaging and trustworthy
-            marketplace that empowers individuals and businesses to discover
-            unique products, make informed decisions, and enjoy the thrill of
-            competitive bidding.
-          </p>
-        </div >
-        <div className="bg-[#EBEAFF] rounded-md p-5">
-          <h3
-            className={`text-[#3D3BF3] text-xl font-bold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}
-          >
-            Our Values
-          </h3>
-          <ul className="list-inside">
-            {values.map((element) => {
-              return (
-                <li className="text-xl text-stone-600 mb-2" key={element.id}>
-                  <span className="text-[#3D3BF3] font-bold">{element.title}</span>:{" "}
-                  {element.description}
-                </li>
-              );
-            })}
+
+        {/* Sections */}
+        <div className="grid gap-10 md:grid-cols-2">
+          {/* Our Mission */}
+          <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#3D3BF3] mb-3">
+              🎯 Our Mission
+            </h2>
+            <p className="text-lg text-stone-700 leading-relaxed">
+              At PrimeBid, our mission is to revolutionize how people buy and sell online. We strive to create an exciting, trustworthy
+              marketplace where users make smart choices and enjoy competitive bidding.
+            </p>
+          </div>
+
+          {/* Our Story */}
+          <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#3D3BF3] mb-3">
+              📖 Our Story
+            </h2>
+            <p className="text-lg text-stone-700 leading-relaxed">
+              Founded by <span className="font-medium text-black">CodeWithZeeshu</span>, PrimeBid is built with years of auction experience and
+              a passion for bringing people together over valuable, unique finds.
+            </p>
+          </div>
+        </div>
+
+        {/* Our Values */}
+        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#3D3BF3] mb-5">
+            💡 Our Core Values
+          </h2>
+          <ul className="space-y-4 text-stone-700 text-lg list-disc pl-5">
+            {values.map((value) => (
+              <li key={value.id}>
+                <span className="text-[#3D3BF3] font-bold">{value.title}</span>: {value.description}
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="bg-[#EBEAFF] rounded-md p-5">
-          <h3
-            className={`text-[#3D3BF3] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}
-          >
-            Our Story
-          </h3>
-          <p className="text-xl text-stone-600">
-            Founded by CodeWithZeeshu, PrimeBid was born out of a passion for
-            connecting people with unique and valuable items. With years of
-            experience in the auction industry, our team is committed to
-            creating a platform that offers an unparalleled auction experience
-            for users worldwide.
+
+        {/* Join Us */}
+        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#3D3BF3] mb-3">
+            🤝 Join Us
+          </h2>
+          <p className="text-lg text-stone-700 leading-relaxed">
+            Whether you're a buyer, seller, or just exploring, PrimeBid welcomes you to a growing community of auction lovers.
+            Discover gems, win bids, and enjoy the thrill — your next great find is waiting.
           </p>
         </div>
-        <div className="bg-[#EBEAFF] rounded-md p-5">
-          <h3
-            className={`text-[#3D3BF3] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}
-          >
-            Join Us
-          </h3>
-          <p className="text-xl text-stone-600">
-            Whether you're looking to buy, sell, or simply explore, PrimeBid
-            invites you to join our growing community of auction enthusiasts.
-            Discover new opportunities, uncover hidden gems, and experience the
-            thrill of winning your next great find.
+
+        {/* Final Thanks */}
+        <div className="bg-white text-center rounded-2xl shadow-lg p-6 md:p-8">
+          <p className="text-xl md:text-2xl font-bold text-[#3D3BF3]">
+            🙏 Thank you for choosing <span className="text-black">AuctionHouse</span>. We're honored to be part of your auction journey!
           </p>
         </div>
-        <div>
-          <p className="bg-[#EBEAFF] rounded-md p-5 text-xl font-bold text-[#3D3BF3] ">
-            Thank you for choosing AuctioHouse. We look forward to being a part of
-            your auction journey!
-          </p>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

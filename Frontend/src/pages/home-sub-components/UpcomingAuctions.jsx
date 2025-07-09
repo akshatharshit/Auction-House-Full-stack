@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 
 const UpcomingAuctions = () => {
   const { allAuctions } = useSelector((state) => state.auction);
-
-  const today = new Date();
-  const todayString = today.toDateString();
+  const todayString = new Date().toDateString();
 
   const auctionsStartingToday = allAuctions.filter((item) => {
     const auctionDate = new Date(item.startTime);
@@ -15,131 +13,104 @@ const UpcomingAuctions = () => {
   });
 
   return (
-    <>
-      <section className="my-8">
-        <h3 className="text-[#111] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">
-          Auctions For Today
-        </h3>
-        <div className="flex flex-wrap gap-6">
-          <div  className="bg-[#FF2929] w-full p-2 gap-10 rounded-md flex flex-col justify-between lg:flex-1 lg:h-auto lg:p-6 2xl:flex-none 2xl:basis-64 2xl:flex-grow 2xl:px-2  2xl:py-6">
-            <span className="rounded-full bg-[#3D3BF3] text-white w-fit p-3">
-              <RiAuctionFill />
-            </span>
-            <div>
-              <h3 className="text-[#3D3BF3] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">
-                Auctions For
-              </h3>
-              <div>
-                <h3 className="text-[#3D3BF3] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">
-                  Today
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-4 w-full lg:flex-1 2xl:flex-none 2xl:basis-64 2xl:flex-grow">
-            {auctionsStartingToday.slice(0, 2).map((element) => {
-              return (
-                <Link
-                to={`/auction/item/${element._id}`}
-                  key={element._id}
-                  className="w-full flex flex-col gap-4 bg-[#3D3BF3] p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={element.image?.url}
-                      alt={element.title}
-                      className="w-16 h-16 2xl:w-10 2xl:h-10"
-                    />
-                    <p className="font-extralight text-[#111] text-[12px]">
-                      {element.title}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="text-stone-600 font-semibold">
-                      Starting Bid:
-                    </p>{" "}
-                    <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
-                    </p>{" "}
-                  </div>
-                  <div className="flex flex-col">
-                    <p className="text-stone-600 font-bold">Starting Time:</p>
-                    <p className="text-black text-[12px]">{element.startTime}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+    <section className="my-12 px-4 md:px-8 lg:px-16">
+      <h3 className="text-3xl font-bold text-gray-800 mb-6">
+        🕒 Auctions For Today
+      </h3>
 
-          <div className="flex flex-col gap-4 w-full 2xl:basis-64 2xl:flex-grow">
-            {auctionsStartingToday.slice(2, 4).map((element) => {
-              return (
-                <Link  to={`/auction/item/${element._id}`}
-                  key={element._id}
-                  className="w-full flex flex-col gap-4 bg-[#3D3BF3] p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={element.image?.url}
-                      alt={element.title}
-                      className="w-16 h-16 2xl:w-10 2xl:h-10"
-                    />
-                    <p className="font-extralight text-[#111] text-[12px]">
-                      {element.title}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="text-stone-600 font-semibold">
-                      Starting Bid:
-                    </p>{" "}
-                    <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
-                    </p>{" "}
-                  </div>
-                  <div className="flex flex-col">
-                    <p className="text-stone-600 font-bold">Starting Time:</p>
-                    <p className="text-black  text-[12px]">{element.startTime}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="flex flex-col gap-4 w-full 2xl:basis-64 2xl:flex-grow">
-            {auctionsStartingToday.slice(4, 6).map((element) => {
-              return (
-                <Link to={`/auction/item/${element._id}`}
-                  key={element._id}
-                  className="w-full flex flex-col gap-4 bg-[#3D3BF3] p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={element.image?.url}
-                      alt={element.title}
-                      className="w-16 h-16 2xl:w-10 2xl:h-10"
-                    />
-                    <p className="font-extralight text-[#111] text-[12px]">
-                      {element.title}
-                    </p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p className="text-stone-600 font-semibold">
-                      Starting Bid:
-                    </p>{" "}
-                    <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
-                    </p>{" "}
-                  </div>
-                  <div className="flex flex-col">
-                    <p className="text-stone-600 font-bold">Starting Time:</p>
-                    <p className="text-black  text-[12px]">{element.startTime}</p>
-                  </div>
-                </Link>
-              );
-            })}
+      <div className="flex flex-wrap gap-6">
+        <div className="bg-[#FF2929] text-white w-full lg:flex-1 p-6 rounded-xl flex flex-col justify-between shadow-lg">
+          <span className="rounded-full bg-[#3D3BF3] w-fit p-3 text-white text-xl">
+            <RiAuctionFill />
+          </span>
+          <div>
+            <h3 className="text-white text-2xl font-semibold mt-4">Auctions For</h3>
+            <h3 className="text-white text-2xl font-semibold">Today</h3>
           </div>
         </div>
-      </section>
-    </>
+
+        <div className="flex flex-col gap-4 w-full lg:flex-1 2xl:basis-64">
+          {auctionsStartingToday.slice(0, 2).map((element) => (
+            <Link
+              to={`/auction/item/${element._id}`}
+              key={element._id}
+              className="w-full flex flex-col gap-3 bg-[#3D3BF3] text-white p-4 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-3">
+                <img
+                  src={element.image?.url}
+                  alt={element.title}
+                  className="w-16 h-16 rounded-md object-cover border-2 border-white"
+                />
+                <p className="text-sm font-medium line-clamp-2">{element.title}</p>
+              </div>
+              <div className="flex justify-between text-sm">
+                <p className="text-white font-medium">Starting Bid:</p>
+                <p className="text-orange-300 font-bold">₹{element.startingBid}</p>
+              </div>
+              <div>
+                <p className="text-white font-medium">Starting Time:</p>
+                <p className="text-sm">{new Date(element.startTime).toLocaleString()}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-4 w-full lg:flex-1 2xl:basis-64">
+          {auctionsStartingToday.slice(2, 4).map((element) => (
+            <Link
+              to={`/auction/item/${element._id}`}
+              key={element._id}
+              className="w-full flex flex-col gap-3 bg-[#3D3BF3] text-white p-4 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-3">
+                <img
+                  src={element.image?.url}
+                  alt={element.title}
+                  className="w-16 h-16 rounded-md object-cover border-2 border-white"
+                />
+                <p className="text-sm font-medium line-clamp-2">{element.title}</p>
+              </div>
+              <div className="flex justify-between text-sm">
+                <p className="text-white font-medium">Starting Bid:</p>
+                <p className="text-orange-300 font-bold">₹{element.startingBid}</p>
+              </div>
+              <div>
+                <p className="text-white font-medium">Starting Time:</p>
+                <p className="text-sm">{new Date(element.startTime).toLocaleString()}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-4 w-full lg:flex-1 2xl:basis-64">
+          {auctionsStartingToday.slice(4, 6).map((element) => (
+            <Link
+              to={`/auction/item/${element._id}`}
+              key={element._id}
+              className="w-full flex flex-col gap-3 bg-[#3D3BF3] text-white p-4 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-3">
+                <img
+                  src={element.image?.url}
+                  alt={element.title}
+                  className="w-16 h-16 rounded-md object-cover border-2 border-white"
+                />
+                <p className="text-sm font-medium line-clamp-2">{element.title}</p>
+              </div>
+              <div className="flex justify-between text-sm">
+                <p className="text-white font-medium">Starting Bid:</p>
+                <p className="text-orange-300 font-bold">₹{element.startingBid}</p>
+              </div>
+              <div>
+                <p className="text-white font-medium">Starting Time:</p>
+                <p className="text-sm">{new Date(element.startTime).toLocaleString()}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

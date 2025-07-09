@@ -17,16 +17,8 @@ const CreateAuction = () => {
   const [endTime, setEndTime] = useState("");
 
   const auctionCategories = [
-    "Electronics",
-    "Furniture",
-    "Art & Antiques",
-    "Jewelry & Watches",
-    "Automobiles",
-    "Real Estate",
-    "Collectibles",
-    "Fashion & Accessories",
-    "Sports Memorabilia",
-    "Books & Manuscripts",
+    "Electronics", "Furniture", "Art & Antiques", "Jewelry & Watches", "Automobiles",
+    "Real Estate", "Collectibles", "Fashion & Accessories", "Sports Memorabilia", "Books & Manuscripts"
   ];
 
   const imageHandler = (e) => {
@@ -65,158 +57,143 @@ const CreateAuction = () => {
   }, [isAuthenticated]);
 
   return (
-    <article className="w-full ml-0 m-0 h-fit px-5 pt-20  flex flex-col bg-[#9694FF]">
-      <h1
-        className={`text-[#FF2929] text-xl font-semibold mb-2 min-[240px]:text-2xl md:text-3xl xl:text-3xl 2xl:text-4xl`}
-      >
-        Create Auction
-      </h1>
-      <div className=" mx-auto w-full h-auto px-2 flex flex-col gap-4 items-center py-4 justify-center rounded-md bg-[#EBEAFF]">
-        <form
-          className="flex flex-col gap-5 w-full"
-          onSubmit={handleCreateAuction}
-        >
-          <p className="font-semibold text-xl md:text-2xl text-[#3D3BF3]">Auction Detail</p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">Title</label>
+    <section className="w-full min-h-screen pt-24 pb-10 px-4 bg-gradient-to-br from-[#EBEAFF] via-[#DAD8FF] to-[#C6C4FF] flex justify-center items-start">
+      <div className="w-full max-w-5xl bg-white shadow-xl border border-gray-200 rounded-xl p-6 md:p-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-[#3D3BF3] to-[#FF2929] mb-10">
+          Create Auction
+        </h1>
+
+        <form className="space-y-8" onSubmit={handleCreateAuction}>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Title</label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               />
             </div>
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">Category</label>
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               >
                 <option value="">Select Category</option>
-                {auctionCategories.map((element) => {
-                  return (
-                    <option key={element} value={element}>
-                      {element}
-                    </option>
-                  );
-                })}
+                {auctionCategories.map((item) => (
+                  <option key={item} value={item}>{item}</option>
+                ))}
               </select>
             </div>
-          </div>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">Condition</label>
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Condition</label>
               <select
                 value={condition}
                 onChange={(e) => setCondition(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               >
                 <option value="">Select Condition</option>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
               </select>
             </div>
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">Starting Bid</label>
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Starting Bid</label>
               <input
                 type="number"
                 value={startingBid}
                 onChange={(e) => setStartingBid(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               />
             </div>
-          </div>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">Description</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-2 border-stone-500 focus:outline-none px-2 rounded-md"
-                rows={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">
-                Auction Starting Time
-              </label>
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Start Time</label>
               <DatePicker
                 selected={startTime}
                 onChange={(date) => setStartTime(date)}
                 showTimeSelect
                 timeFormat="HH:mm"
                 timeIntervals={15}
-                dateFormat={"MMMM d, yyyy h,mm aa"}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
+                dateFormat="MMMM d, yyyy h:mm aa"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               />
             </div>
-            <div className="flex flex-col sm:flex-1">
-              <label className="text-[16px] text-[#3D3BF3]">
-                Auction End Time
-              </label>
+            <div>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">End Time</label>
               <DatePicker
                 selected={endTime}
                 onChange={(date) => setEndTime(date)}
                 showTimeSelect
                 timeFormat="HH:mm"
                 timeIntervals={15}
-                dateFormat={"MMMM d, yyyy h,mm aa"}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
+                dateFormat="MMMM d, yyyy h:mm aa"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+                required
               />
             </div>
           </div>
-          <div className="flex flex-col gap-4">
-            <label className="font-semibold text-xl md:text-2xl text-[#3D3BF3]">
-              Auction Item Image
-            </label>
-            <div class="flex items-center justify-center w-full">
-              <label
-                for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-              >
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                  {imagePreview ? (
-                    <img src={imagePreview} alt={title} className="w-44 h-auto"/>
-                  ) : (
-                    <>
-                      <svg
-                        class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 16"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                        />
-                      </svg>
-                    </>
-                  )}
 
-                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold">Click to upload</span> or drag
-                    and drop
-                  </p>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
-                  </p>
-                </div>
-                <input id="dropzone-file" type="file" class="hidden" onChange={imageHandler}/>
-              </label>
-            </div>
+          <div>
+            <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Description</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={6}
+              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#D6482B] outline-none"
+              required
+            />
           </div>
-          <button className="bg-[#3D3BF3] font-semibold hover:bg-[#FF2929] text-xl transition-all duration-300 py-2 px-4 rounded-md text-white w-[280px] mx-auto lg:w-[640px] my-4">{loading ? "Creating Auction..." : "Create Auction"}</button>
+
+          <div className="w-full">
+            <label className="block text-lg font-bold text-[#3D3BF3] mb-2">Auction Item Image</label>
+            <label
+              htmlFor="dropzone-file"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+            >
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                {imagePreview ? (
+                  <img src={imagePreview} alt={title} className="w-40 h-auto rounded-md" />
+                ) : (
+                  <>
+                    <svg
+                      className="w-8 h-8 mb-4 text-gray-500"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M4 12l1.293-1.293a1 1 0 011.414 0L9 13l2.293-2.293a1 1 0 011.414 0L15 13l3.293-3.293a1 1 0 011.414 0L20 12"></path>
+                    </svg>
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Click to upload</span> or drag & drop
+                    </p>
+                    <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (Max: 800x400px)</p>
+                  </>
+                )}
+              </div>
+              <input id="dropzone-file" type="file" className="hidden" onChange={imageHandler} />
+            </label>
+          </div>
+
+          <div className="pt-6">
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-md text-white font-semibold bg-[#3D3BF3] hover:bg-[#FF2929] transition duration-300"
+              disabled={loading}
+            >
+              {loading ? "Creating Auction..." : "Create Auction"}
+            </button>
+          </div>
         </form>
       </div>
-    </article>
+    </section>
   );
 };
 

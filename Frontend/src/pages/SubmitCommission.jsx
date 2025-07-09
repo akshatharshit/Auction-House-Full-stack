@@ -14,6 +14,7 @@ const SubmitCommission = () => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.commission);
+
   const handlePaymentProof = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -24,52 +25,55 @@ const SubmitCommission = () => {
   };
 
   return (
-    <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20  flex flex-col min-h-screen py-4 justify-start bg-[#9694FF]">
-        <div className=" mx-auto w-full h-auto px-2 flex flex-col gap-4 items-center py-4 justify-center rounded-md bg-[#EBEAFF]">
-          <form
-            className="flex flex-col gap-5 w-full"
-            onSubmit={handlePaymentProof}
+    <section className="w-full min-h-screen bg-gradient-to-br from-[#C6C4FF] via-[#9694FF] to-[#7B78FF] py-20 px-4 flex items-center justify-center">
+      <div className="bg-white w-full max-w-2xl rounded-xl shadow-xl px-6 py-10">
+        <form className="flex flex-col gap-6" onSubmit={handlePaymentProof}>
+          <h3 className="text-[#FF2929] text-2xl md:text-3xl font-bold text-center">
+            Upload Payment Proof
+          </h3>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-[#3D3BF3] font-medium text-lg">Amount</label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="Enter payment amount"
+              className="border border-gray-300 rounded-md px-4 py-2 text-[16px] focus:ring-2 focus:ring-[#3D3BF3] outline-none transition"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-[#3D3BF3] font-medium text-lg">
+              Payment Proof (Screenshot)
+            </label>
+            <input
+              type="file"
+              onChange={proofHandler}
+              className="border border-gray-300 rounded-md px-4 py-2 text-[16px] bg-white file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-[#3D3BF3] file:text-white cursor-pointer transition hover:file:bg-[#2C2AF3]"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-[#3D3BF3] font-medium text-lg">Comment</label>
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              rows={6}
+              placeholder="Add any notes or comments"
+              className="border border-gray-300 rounded-md px-4 py-2 text-[16px] focus:ring-2 focus:ring-[#3D3BF3] outline-none transition resize-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-[#FF2929] hover:bg-[#e22626] text-white font-semibold text-lg py-3 rounded-md transition-all duration-300"
           >
-            <h3 className={`text-[#FF2929] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}>Upload Payment Proof</h3>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Amount</label>
-              <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">
-                Payment Proof (ScreenShot)
-              </label>
-              <input
-                type="file"
-                onChange={proofHandler}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Comment</label>
-              <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                rows={7}
-                className="text-[16px] py-2 bg-transparent border-[1px] rounded-md px-1 border-stone-500 focus:outline-none"
-              />
-            </div>
-              <button
-                className="bg-[#FF2929] mx-auto font-semibold hover:bg-[#FF2929] text-xl transition-all duration-300 py-2 px-4 rounded-md text-white my-4"
-                type="submit"
-              >
-                {loading ? "Uploading..." : "Upload Payment Proof"}
-              </button>
-          </form>
-        </div>
-      </section>
-    </>
+            {loading ? "Uploading..." : "Upload Payment Proof"}
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 

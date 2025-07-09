@@ -14,5 +14,4 @@ const MyAnimation = () => {
 
   return <Lottie options={defaultOptions} />;
 };
-
 export default MyAnimation;

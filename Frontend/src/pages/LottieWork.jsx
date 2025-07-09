@@ -14,5 +14,4 @@ const Work = () => {
 
   return <Lottie options={defaultOptions} />;
 };
-
 export default Work;

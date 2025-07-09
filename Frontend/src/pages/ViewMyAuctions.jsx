@@ -21,46 +21,51 @@ const ViewMyAuctions = () => {
 
   return (
     <>
-    <div className="bg-[#EBEAFF]">
-
-      <div className="w-full ml-0 m-0 h-fit px-5 pt-20  flex flex-col bg-[#9694FF]">
-        <h1
-          className={`text-[#FF2929] text-2xl font-bold mb-2 min-[240px]:text-2xl md:text-3xl xl:text-3xl 1xl:text-4xl`}
-          >
-          My Auctions
-        </h1>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <div
-          className={`${
-              myAuctions.length > 2 && "flex-grow"
-            } flex flex-wrap gap-6 bg-[#9694FF]`}
-            >
-            {myAuctions.length > 0 ? (
-              myAuctions.map((element) => {
-                return (
-                  <CardTwo
-                  title={element.title}
-                  startingBid={element.startingBid}
-                  endTime={element.endTime}
-                  startTime={element.startTime}
-                  imgSrc={element.image?.url}
-                  id={element._id}
-                  key={element._id}
-                  />
-                );
-              })
-            ) : (
-              <h3 className="text-[#666] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl mt-5">
-                You have not posted any auction.
-              </h3>
-            )}{" "}
-            :
+      <section className="w-full min-h-screen bg-gradient-to-br from-[#EBEAFF] to-[#9694FF] px-5 pt-24 pb-10">
+        <div className="max-w-7xl mx-auto flex flex-col">
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#FF2929] border-l-4 border-[#3D3BF3] pl-4">
+              My Auctions
+            </h1>
+            <p className="text-gray-700 mt-2 text-lg">
+              View and manage all items you have posted for auction.
+            </p>
           </div>
-        )}
-      </div>
- </div>
+
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div
+              className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${
+                myAuctions.length === 0 && "justify-center"
+              }`}
+            >
+              {myAuctions.length > 0 ? (
+                myAuctions.map((element) => (
+                  <CardTwo
+                    key={element._id}
+                    title={element.title}
+                    startingBid={element.startingBid}
+                    endTime={element.endTime}
+                    startTime={element.startTime}
+                    imgSrc={element.image?.url}
+                    id={element._id}
+                  />
+                ))
+              ) : (
+                <div className="col-span-full text-center mt-10">
+                  <h3 className="text-2xl font-semibold text-gray-600">
+                    You have not posted any auction yet.
+                  </h3>
+                  <p className="text-gray-500 mt-2">
+                    Start by posting your first item to auction!
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 };

@@ -21,6 +21,7 @@ import ViewAuctionDetails from "./pages/ViewAuctionDetails";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Contact from "./pages/Contact";
 import UserProfile from "./pages/UserProfile";
+import Footer from "./pages/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/me" element={<UserProfile />} />
       </Routes>
       <ToastContainer position="top-right" />
+      <Footer/>
     </Router>
   );
 };

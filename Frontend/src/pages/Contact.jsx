@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { FaFacebook, FaInstagram, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   const navigateTo = useNavigate();
+
   const handleContactForm = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,90 +34,108 @@ const Contact = () => {
         "YcOimjllS64zn4ghK"
       )
       .then(() => {
-        toast.success("Thank You! Your message has been sent successfully.");
+        toast.success("Thank you! Your message has been sent successfully.");
         setLoading(false);
         navigateTo("/");
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Failed to send message.");
         setLoading(false);
       });
   };
 
   return (
-    <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20 flex flex-col min-h-screen py-4 justify-start bg-[#EBEAFF]">
-        <div className="bg-[#EBEAFF] mx-auto w-full h-auto px-2 flex flex-col gap-4 items-center py-4 justify-center rounded-md">
-          <form
-            className="flex flex-col gap-5 w-full"
-            onSubmit={handleContactForm}
-          >
-            <h3
-              className={`text-[#FF2929] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl`}
-            >
-              Contact Us
-            </h3>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Your Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B]"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Your Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B]"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Your Phone</label>
-              <input
-                type="number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B]"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Subject</label>
-              <input
-                type="text"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B]"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-[#3D3BF3]">Message</label>
-              <textarea
-                rows={7}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B]"
-                required
-              />
-            </div>
+    <section className="min-h-screen pt-24 pb-10 px-4 bg-gradient-to-br from-[#EBEAFF] via-[#DAD8FF] to-[#C6C4FF]">
+      <div className="max-w-3xl mx-auto bg-white/70 backdrop-blur-md shadow-2xl rounded-2xl p-8 md:p-10 border border-white/40">
+        <h2 className="text-center text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#3D3BF3] to-[#FF2929] mb-10">
+          Contact Us
+        </h2>
 
+        <form onSubmit={handleContactForm} className="space-y-6">
+          {[
+            { label: "Your Name", type: "text", value: name, setter: setName },
+            { label: "Your Email", type: "email", value: email, setter: setEmail },
+            { label: "Your Phone", type: "tel", value: phone, setter: setPhone },
+            { label: "Subject", type: "text", value: subject, setter: setSubject },
+          ].map((field, idx) => (
+            <div key={idx}>
+              <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">
+                {field.label}
+              </label>
+              <input
+                type={field.type}
+                value={field.value}
+                onChange={(e) => field.setter(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B] shadow-sm"
+                required
+              />
+            </div>
+          ))}
+
+          <div>
+            <label className="block text-sm font-semibold text-[#3D3BF3] mb-1">Message</label>
+            <textarea
+              rows={6}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D6482B] shadow-sm"
+              required
+            />
+          </div>
+
+          <div className="text-center pt-4">
             <button
-              className="bg-[#d6482b] mx-auto font-semibold hover:bg-[#b8381e] text-xl transition-all duration-300 py-2 px-4 rounded-md text-white my-4"
               type="submit"
+              disabled={loading}
+              className="bg-gradient-to-r from-[#D6482B] to-[#b8381e] hover:from-[#b8381e] hover:to-[#a42f18] text-white font-semibold px-8 py-3 rounded-md transition-all duration-300 shadow-lg hover:shadow-2xl disabled:opacity-60"
             >
-              {loading ? "Sending Message..." : "Send Message"}
+              {loading ? "Sending..." : "Send Message"}
             </button>
-          </form>
+          </div>
+        </form>
+
+        {/* Social Links */}
+        <div className="mt-12 pt-6 border-t border-gray-200 text-center">
+          <p className="text-gray-600 text-sm mb-4">Or reach out to us on</p>
+          <div className="flex justify-center gap-6 text-2xl text-[#3D3BF3]">
+            <a
+              href="mailto:info@example.com"
+              className="hover:text-[#FF2929] transition duration-300 hover:scale-110"
+              title="Email"
+            >
+              <FaEnvelope />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF2929] transition duration-300 hover:scale-110"
+              title="Facebook"
+            >
+              <FaFacebook />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF2929] transition duration-300 hover:scale-110"
+              title="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF2929] transition duration-300 hover:scale-110"
+              title="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
