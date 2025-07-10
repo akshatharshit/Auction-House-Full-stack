@@ -29,6 +29,7 @@ const SideDrawer = () => {
         : "text-gray-200 hover:bg-white hover:bg-opacity-10 hover:text-white"
     }`;
   };
+  
 
   return (
     <nav className="bg-[#1E1F29] text-gray-200 shadow-lg sticky top-0 z-50">
