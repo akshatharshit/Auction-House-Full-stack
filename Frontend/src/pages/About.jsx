@@ -61,7 +61,7 @@ const About = () => {
               📖 Our Story
             </h2>
             <p className="text-lg text-stone-700 leading-relaxed">
-              Founded by <span className="font-medium text-black">CodeWithZeeshu</span>, PrimeBid is built with years of auction experience and
+              PrimeBid is built with years of auction experience and
               a passion for bringing people together over valuable, unique finds.
             </p>
           </div>
